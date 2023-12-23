@@ -1,4 +1,0 @@
-﻿  TaskTrackerConsole.cpp
-C:\Users\AntonStudy\Documents\GitHub\TaskTrackerConsole\TaskTrackerConsole\TaskTrackerConsole\TaskTrackerConsole.cpp(88): warning C4715: 'TaskMananger::statusChanger': not all control paths return a value
-  LINK : C:\Users\AntonStudy\Documents\GitHub\TaskTrackerConsole\TaskTrackerConsole\x64\Debug\TaskTrackerConsole.exe not found or not built by the last incremental link; performing full link
-  TaskTrackerConsole.vcxproj -> C:\Users\AntonStudy\Documents\GitHub\TaskTrackerConsole\TaskTrackerConsole\x64\Debug\TaskTrackerConsole.exe
