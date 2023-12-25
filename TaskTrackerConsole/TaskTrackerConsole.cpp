@@ -33,7 +33,8 @@ void showMenu() {
     std::cout << "3 - Cancel task." << std::endl;
     std::cout << "4 - Show completed tasks." << std::endl;
     std::cout << "5 - Show canceled tasks." << std::endl;
-    std::cout << "6 - Exit application." << std::endl;
+    std::cout << "6 - Delete task." << std::endl;
+    std::cout << "7 - Exit application." << std::endl;
     std::cout << "Type number:";
 }
 
@@ -56,16 +57,34 @@ public:
         }
         else {
             std::cout << "Task name can't be empty!" << std::endl;
-              // Clear input buffer
+            // Clear input buffer
         }
     }
 
-    int statusChanger(int action) {
+    void deleteTask() {
+        std::string taskName;
+        std::cout << "Enter task name:"; std::cin.ignore(); std::getline(std::cin, taskName); std::cout << std::endl;
+        if (!(taskName.empty())) {
+            int i = 0;
+            for (auto el : this->tasks) {
+
+                if (el.name == taskName) {
+                    this->tasks.erase(this->tasks.begin() + i);
+                }
+                i++;
+            }
+        }
+        else {
+            std::cout << "Task name can't be empty!" << std::endl;
+        }
+    }
+
+    void statusChanger(int action) {
         if (this->tasks.empty()) {
             std::cout << "There are no tasks right now. Add one if you need!" << std::endl;
-             
-             
-            return 0;
+
+
+            return;
         }
 
         std::string taskName;
@@ -77,7 +96,7 @@ public:
         }
         else {
             std::cout << "Error1 in status changer" << std::endl;
-            return 0;
+            return;
         }
 
         auto itr = this->tasks.begin();
@@ -100,13 +119,13 @@ public:
                 ++itr;
             }
         }
-        return 1;
+        return;
     }
 
     void showTasks(std::string status) {
         if (this->tasks.empty()) {
             std::cout << "There are no tasks right now. Add one if you need!" << std::endl;
-             
+
         }
         else {
             std::cout << std::left << "Here are tasks with " << status << " status: " << std::endl;
@@ -142,7 +161,7 @@ public:
                 });
         }
 
-        outfile << std::setw(4) << j; 
+        outfile << std::setw(4) << j;
         outfile.close();
     }
 
@@ -166,6 +185,8 @@ public:
 
         infile.close();
     }
+
+
 };
 
 TaskManager::TaskManager() {}
@@ -210,18 +231,23 @@ int main() {
                 Sleep(3000);
                 break;
             case 6:
+                system("CLS");
+                taskManager.deleteTask();
+                taskManager.saveData();
+                break;
+            case 7:
                 taskManager.saveData();
                 return 0;
             default:
                 std::cout << "Unknown command!" << std::endl;
-                
+
                 break;
             }
         }
         else {
             std::cout << "Please enter a number!" << std::endl;
             std::cin.clear();
-             
+
         }
     }
 
